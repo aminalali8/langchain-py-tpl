@@ -1,0 +1,4 @@
+langchain
+langserve[all]
+fastapi
+uvicorn

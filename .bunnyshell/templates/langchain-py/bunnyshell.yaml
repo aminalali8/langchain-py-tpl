@@ -7,12 +7,13 @@ templateVariables:
     AI_API: openai,anthropic
     AI_API_KEY: your_openai_api_key,your_anthropic_api_key
 components:
-    - kind: Application
-      name: langchain-py
-      gitRepo: "https://github.com/aminalali8/langchain-py-tpl.git"
-      gitBranch: main
-      gitApplicationPath: /
-      dockerCompose: 
+    - 
+        kind: Application
+        name: langchain-py
+        gitRepo: "https://github.com/aminalali8/langchain-py-tpl.git"
+        gitBranch: main
+        gitApplicationPath: /
+        dockerCompose: 
         build: 
             context: .
             dockerfile: Dockerfile
@@ -22,9 +23,8 @@ components:
                 - AI_API_KEY={{template.vars.AI_API_KEY}}
         ports: 
             - 8000:8000
-      hosts:
+        hosts:
         - hostname: "langchain-py-{{env.base_domain}}"
-          path: /
-          servicePort: 8000
-      
+            path: /
+            servicePort: 8000
 # Add your configuration here

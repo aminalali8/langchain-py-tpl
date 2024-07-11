@@ -14,17 +14,18 @@ components:
         gitBranch: main
         gitApplicationPath: /
         dockerCompose: 
-        build: 
-            context: .
-            dockerfile: Dockerfile
-            args:
-                - SDK={{template.vars.CLOUD_PROVIDER_SDK}}
-                - AI={{template.vars.AI_API}}
-                - AI_API_KEY={{template.vars.AI_API_KEY}}
-        ports: 
-            - 8000:8000
+            build: 
+                context: .
+                dockerfile: Dockerfile
+                args:
+                    - SDK={{template.vars.CLOUD_PROVIDER_SDK}}
+                    - AI={{template.vars.AI_API}}
+                    - AI_API_KEY={{template.vars.AI_API_KEY}}
+            ports: 
+                - 8000:8000
         hosts:
-        - hostname: "langchain-py-{{env.base_domain}}"
-            path: /
-            servicePort: 8000
+            - 
+                hostname: "langchain-py-{{env.base_domain}}"
+                path: /
+                servicePort: 8000
 # Add your configuration here

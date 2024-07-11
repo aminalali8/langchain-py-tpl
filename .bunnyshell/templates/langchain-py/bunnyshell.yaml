@@ -21,7 +21,6 @@ components:
                 target: dev-{{template.vars.AI_API}}
                 args:
                     - SDK={{template.vars.CLOUD_PROVIDER_SDK}}
-                    - AI={{template.vars.AI_API}}
                     - API_KEY={{env.vars.API_KEY}}
             ports: 
                 - 8000:8000

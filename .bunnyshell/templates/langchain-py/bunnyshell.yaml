@@ -9,7 +9,7 @@ templateVariables:
 components:
     - kind: Application
       name: langchain-py
-      gitRepo: "https://github.com/bunnyshell/bunnyshell.git"
+      gitRepo: "https://github.com/aminalali8/langchain-py-tpl.git"
       gitBranch: main
       gitApplicationPath: /
       dockerCompose: 

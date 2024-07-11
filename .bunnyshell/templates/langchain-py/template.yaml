@@ -1,13 +1,16 @@
 # Template Documentation
 name: langchain-py template
-description: Description goes here
+description: 
 tags:
     - bunnyshell
-icons: [ 'sample' ]
+icons: [ 'Python', 'Langchain', 'AWS', 'GCP', 'Azure', 'OpenAI', 'Anthropic' ]
 stack:
   packages:
-    - name: Package name
-      version: '1.0.0'
+    - name: Langchain
+      version: '0.2'
+    - name: Python
+      version: '3.9'
 discoverable: true
 categories:
-    - Add your category here
+    - llm
+    - AI/ML

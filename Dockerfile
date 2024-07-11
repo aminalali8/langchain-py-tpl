@@ -12,14 +12,14 @@ RUN apt-get update && apt-get install -y \
 FROM base as dev-sdk
 
 # Add an argument for the SDK to be installed
-ARG SDK
+ARG CLOUD_SDK
 
-# Use a conditional to install the specified SDK
-RUN if [ "$SDK" = "aws" ]; then pip install --no-cache-dir boto3; \
-    elif [ "$SDK" = "gcp" ]; then pip install --no-cache-dir google-cloud; \
-    elif [ "$SDK" = "azure" ]; then pip install --no-cache-dir azure; \
-    elif [ "$SDK" = "vertex" ]; then pip install --no-cache-dir google-cloud-aiplatform; \
-    else echo "No valid SDK specified, skipping SDK installation"; fi
+# Use a conditional to install the specified CLOUD_SDK
+RUN if [ "$CLOUD_SDK" = "aws" ]; then pip install --no-cache-dir boto3; \
+    elif [ "$CLOUD_SDK" = "gcp" ]; then pip install --no-cache-dir google-cloud; \
+    elif [ "$CLOUD_SDK" = "azure" ]; then pip install --no-cache-dir azure; \
+    elif [ "$CLOUD_SDK" = "vertex" ]; then pip install --no-cache-dir google-cloud-aiplatform; \
+    else echo "No valid CLOUD_SDK specified, skipping CLOUD_SDK installation"; fi
 
 # OpenAI Stage
 FROM dev-sdk as dev-openai

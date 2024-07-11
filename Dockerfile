@@ -21,22 +21,37 @@ RUN if [ "$SDK" = "aws" ]; then pip install --no-cache-dir boto3; \
     elif [ "$SDK" = "vertex" ]; then pip install --no-cache-dir google-cloud-aiplatform; \
     else echo "No valid SDK specified, skipping SDK installation"; fi
 
-FROM dev-sdk as dev
+# OpenAI Stage
+FROM dev-sdk as dev-openai
 
 # Copy the application code
 COPY ./llm_chain/ .
 
 # Set environment variables based on the selected SDK
-ARG AI
 ARG API_KEY
+ENV OPENAI_API_KEY=$API_KEY
+RUN pip install --no-cache-dir langchain-openai; 
 
-RUN if [ "${AI}" = "openai" ]; then \
-    echo "OPENAI_API_KEY=${API_KEY}" >> .env; \
-    pip install --no-cache-dir langchain-openai; \
-    elif [ "${AI}" = "anthropic" ]; then \
-    echo "ANTHROPIC_API_KEY=${API_KEY}" >> .env; \
-    pip install --no-cache-dir langchain-anthropic; \
-    fi
+# Install Python dependencies
+COPY llm_chain/requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the port the app runs on
+EXPOSE 8000
+
+# Command to run the application
+CMD ["python", "server/serve.py"]
+
+# Anthropic Stage
+FROM dev-sdk as dev-anthropic
+
+# Copy the application code
+COPY ./llm_chain/ .
+
+# Set environment variables based on the selected SDK
+ARG API_KEY
+ENV ANTHROPIC_API_KEY=$API_KEY
+RUN pip install --no-cache-dir langchain-anthropic; 
 
 # Install Python dependencies
 COPY llm_chain/requirements.txt requirements.txt

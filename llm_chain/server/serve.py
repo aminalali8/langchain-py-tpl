@@ -7,12 +7,17 @@ from langchain_openai import ChatOpenAI
 from langserve import add_routes
 
 # Accessing the OPENAI_API_KEY environment variable
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-print(f"Using Open AI API Key: {OPENAI_API_KEY}")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+if not OPENAI_API_KEY:
+    raise ValueError("OPENAI_API_KEY environment variable is not set")
+else :
+    print("OPENAI_API_KEY: ", OPENAI_API_KEY)
+
 # Define the chain
 system_template = "Translate the following into {language}:"
 prompt_template = ChatPromptTemplate.from_messages([('system', system_template), ('user', '{text}')])
-model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
+model = ChatOpenAI()
 parser = StrOutputParser()
 chain = prompt_template | model | parser
 

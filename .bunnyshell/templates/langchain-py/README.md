@@ -35,7 +35,7 @@ Here’s an outline of the environment variables you might need to set:
 - `AWS_DEFAULT_REGION`: Your default AWS region.
 - `AWS_PROFILE` (optional): The name of a profile in your AWS credentials file.
 
-### For GCP:
+### For GCP OR Vertex AI:
 - `GOOGLE_APPLICATION_CREDENTIALS`: The file path to your Google Cloud service account key file.
 - `GOOGLE_CLOUD_PROJECT`: Your Google Cloud project ID.
 
@@ -44,10 +44,6 @@ Here’s an outline of the environment variables you might need to set:
 - `AZURE_CLIENT_ID`: The client (application) ID of your Azure service principal.
 - `AZURE_CLIENT_SECRET`: The client secret of your Azure service principal.
 - `AZURE_TENANT_ID`: The tenant ID of your Azure Active Directory.
-
-### For Vertex AI Platform:
-- `GOOGLE_APPLICATION_CREDENTIALS`: The file path to your Google Cloud service account key file.
-- `GOOGLE_CLOUD_PROJECT`: Your Google Cloud project ID.
 
 ### For OpenAI:
 - `OPENAI_API_KEY`: Your OpenAI API key.

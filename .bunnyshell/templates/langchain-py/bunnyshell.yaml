@@ -5,7 +5,8 @@ type: primary
 templateVariables: 
     CLOUD_PROVIDER_SDK: aws,gcp,azure,vertex
     AI_API: openai,anthropic
-    AI_API_KEY: your_openai_api_key,your_anthropic_api_key
+environmentVariables: 
+    API_KEY: your_openai_api_key,your_anthropic_api_key
 components:
     - 
         kind: Application
@@ -17,10 +18,11 @@ components:
             build: 
                 context: .
                 dockerfile: Dockerfile
+                target: dev-{{template.vars.AI_API}}
                 args:
                     - SDK={{template.vars.CLOUD_PROVIDER_SDK}}
                     - AI={{template.vars.AI_API}}
-                    - AI_API_KEY={{template.vars.AI_API_KEY}}
+                    - API_KEY={{env.vars.API_KEY}}
             ports: 
                 - 8000:8000
         hosts:
